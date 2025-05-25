@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanh toán Ebook</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0f0f0f;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .glow-container {
+      position: relative;
+    }
+
+    #submit {
+      padding: 20px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #00f0ff, #0072ff);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      box-shadow:
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #00f0ff;
+      transition: transform 0.3s ease;
+    }
+
+    #submit:hover {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 20px #00f0ff,
+        0 0 40px #00f0ff,
+        0 0 80px #00f0ff;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 2s infinite;
+      z-index: 0;
+    }
+
+    .pulse-ring:nth-child(2) {
+      animation-delay: 0.5s;
+      width: 300px;
+      height: 300px;
+    }
+
+    .pulse-ring:nth-child(3) {
+      animation-delay: 1s;
+      width: 350px;
+      height: 350px;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+  <script src="checkout.js" defer></script>
+</head>
+<body>
+  <div class="glow-container">
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <button id="submit">Thanh Toán Để Mở Khoá Ebook </button>
+  </div>
+</body>
+</html>
