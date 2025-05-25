@@ -16,7 +16,7 @@ PayOS = PayOS(
 app = Flask(__name__, static_folder='public',
             static_url_path='', template_folder='public')
 
-@app.route('/create_payment_link', methods=['POST'])
+@app.route('/create_payment_link', methods=['GET', 'POST'])
 def create_payment():
     domain = "https://payos-payment-server.onrender.com"
 
