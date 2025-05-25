@@ -23,7 +23,7 @@ def create_payment():
     try:
         paymentData = PaymentData(
             orderCode=random.randint(1000, 99999),
-            amount=99000,
+            amount=69000,
             description="Mở khoá ebook",
             cancelUrl=f"{domain}/cancel.html",
             returnUrl="https://unlockebookcoaytunguyen.netlify.app/",
@@ -31,7 +31,7 @@ def create_payment():
                 ItemData(
                     name="Mở khoá ebook",
                     quantity=1,
-                    price=99000
+                    price=69000
                 )
             ]
         )
