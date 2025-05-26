@@ -11,3 +11,4 @@ Werkzeug==2.0.1
 payos==0.1.8
 python-dotenv
 gunicorn
+flask-cors==3.0.10
