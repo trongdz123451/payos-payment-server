@@ -6,6 +6,7 @@ load_dotenv()
 
 from payos import PaymentData, ItemData, PayOS
 from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS  # ✅ Thêm dòng này
 
 PayOS = PayOS(
     client_id=os.environ.get('PAYOS_CLIENT_ID'),
@@ -15,18 +16,18 @@ PayOS = PayOS(
 
 app = Flask(__name__, static_folder='public',
             static_url_path='', template_folder='public')
+CORS(app)  # ✅ Bật CORS tại đây
 
-@app.route('/create_payment_link', methods=['GET', 'POST'])
+@app.route('/create_payment_link', methods=['POST'])
 def create_payment():
-    domain = "https://payos-payment-server.onrender.com"
-
+    domain = "http://127.0.0.1:5000"
     try:
         paymentData = PaymentData(
             orderCode=random.randint(1000, 99999),
             amount=69000,
             description="Mở khoá ebook",
             cancelUrl=f"{domain}/cancel.html",
-            returnUrl="https://unlockebookcoaytunguyen.netlify.app/",
+            returnUrl="https://unlockebookcoaytunguyen.netlify.app/",  # ✅ Sửa dấu ngoặc nhọn { } sai cú pháp
             items=[
                 ItemData(
                     name="Mở khoá ebook",
@@ -39,8 +40,8 @@ def create_payment():
         return jsonify(payosCreatePayment.to_json())
     except Exception as e:
         import traceback
-        print(traceback.format_exc())
+        print(traceback.format_exc())  # In ra lỗi chi tiết trong terminal
         return jsonify(error=str(e)), 403
-
+    
 if __name__ == "__main__":
     app.run(port=4242, debug=True)
