@@ -2,21 +2,21 @@ import json
 import os
 import random
 from dotenv import load_dotenv
+from payos import PaymentData, ItemData, PayOS
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 load_dotenv()
 
-from payos import PaymentData, ItemData, PayOS
-from flask import Flask, render_template, jsonify, request
-from flask_cors import CORS  # ✅ Thêm dòng này
-
-PayOS = PayOS(
+# Gọi đúng tên biến, không đè class
+payos = PayOS(
     client_id=os.environ.get('PAYOS_CLIENT_ID'),
     api_key=os.environ.get('PAYOS_API_KEY'),
     checksum_key=os.environ.get('PAYOS_CHECKSUM_KEY')
 )
 
-app = Flask(__name__, static_folder='public',
-            static_url_path='', template_folder='public')
-CORS(app)  # ✅ Bật CORS tại đây
+app = Flask(__name__, static_folder='public', static_url_path='', template_folder='public')
+CORS(app)
 
 @app.route('/create_payment_link', methods=['POST'])
 def create_payment():
@@ -27,21 +27,17 @@ def create_payment():
             amount=69000,
             description="Mở khoá ebook",
             cancelUrl=f"{domain}/cancel.html",
-            returnUrl="https://unlockebookcoaytunguyen.netlify.app/",  # ✅ Sửa dấu ngoặc nhọn { } sai cú pháp
+            returnUrl="https://unlockebookcoaytunguyen.netlify.app/",
             items=[
-                ItemData(
-                    name="Mở khoá ebook",
-                    quantity=1,
-                    price=69000
-                )
+                ItemData(name="Mở khoá ebook", quantity=1, price=69000)
             ]
         )
-        payosCreatePayment = PayOS.createPaymentLink(paymentData)
+        payosCreatePayment = payos.createPaymentLink(paymentData)
         return jsonify(payosCreatePayment.to_json())
     except Exception as e:
         import traceback
-        print(traceback.format_exc())  # In ra lỗi chi tiết trong terminal
+        print(traceback.format_exc())
         return jsonify(error=str(e)), 403
-    
+
 if __name__ == "__main__":
     app.run(port=4242, debug=True)
