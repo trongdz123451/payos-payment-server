@@ -23,7 +23,7 @@ def create_payment():
     amount=69000,
     description="Mở khoá ebook",
     cancelUrl=f"{domain}/cancel.html",
-    returnUrl="{https://canphongrieng2nguoi.netlify.app/thankyou.html}",
+    returnUrl="https://canphongrieng2nguoi.netlify.app/thankyou.html",
     items=[
         ItemData(
             name="Mở khoá ebook",
