@@ -22,7 +22,7 @@ def create_payment():
     orderCode=random.randint(1000, 99999),
     amount=69000,
     description="Mở khoá ebook",
-    cancelUrl=f"{domain}/cancel.html",
+    cancelUrl="https://canphongrieng2nguoi.io.vn/",
     returnUrl="https://unlockebookcoaytunguyen.netlify.app/",
     items=[
         ItemData(
