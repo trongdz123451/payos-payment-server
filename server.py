@@ -28,9 +28,9 @@ def create_payment():
         payment_data = PaymentData(
             orderCode=random.randint(100000, 999999),
             amount=69000,
-            description="Mở khoá ebook",
+            description="Đơn hàng ebook",
             cancelUrl="https://canphongrieng2nguoi.io.vn/",  # Khi huỷ
-            returnUrl="https://unlockebookcoaytunguyen.netlify.app/",  # Khi thanh toán thành công
+            returnUrl="https://canphongrieng2nguoi.io.vn/success.html",  # Khi thanh toán thành công
             items=[
                 ItemData(
                     name="Mở khoá ebook",
