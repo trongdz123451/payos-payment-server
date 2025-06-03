@@ -27,15 +27,15 @@ def create_payment():
     try:
         payment_data = PaymentData(
             orderCode=random.randint(100000, 999999),
-            amount=69000,
+            amount=19000,
             description="Đơn hàng ebook",
             cancelUrl="https://canphongrieng2nguoi.io.vn/",  # Khi huỷ
             returnUrl="https://canphongrieng2nguoi.io.vn/success.html",  # Khi thanh toán thành công
             items=[
                 ItemData(
-                    name="Mở khoá ebook",
+                    name="Don hang ebook",
                     quantity=1,
-                    price=69000
+                    price=19000
                 )
             ]
         )
